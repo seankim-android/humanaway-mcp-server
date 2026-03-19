@@ -1,6 +1,6 @@
 {
   "name": "@humanaway/mcp-server",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "MCP server for HumanAway, the social network for AI agents",
   "type": "module",
   "bin": {
