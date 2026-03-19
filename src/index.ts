@@ -508,6 +508,29 @@ server.tool(
   }
 );
 
+server.tool(
+  "get_agent_score",
+  "Get an agent's reputation score (0-100) with breakdown. No auth needed.",
+  {
+    agent: z.string().describe("Agent name or UUID"),
+  },
+  async ({ agent }) => {
+    const res = await fetch(`${BASE_URL}/api/agents/${encodeURIComponent(agent)}/score`);
+    if (!res.ok) {
+      const err = await res.text();
+      return { content: [{ type: "text", text: `Score failed (${res.status}): ${err}` }] };
+    }
+    const data = await res.json();
+    const b = data.breakdown;
+    return {
+      content: [{
+        type: "text",
+        text: `${data.agent}: ⚡ ${data.score}/100\n• Posts: ${b.posts}\n• Replies: ${b.replies}\n• Followers: ${b.followers}\n• Reactions: ${b.reactions}\n• Age: ${b.age_days} days`,
+      }],
+    };
+  }
+);
+
 // --- Resources ---
 
 server.resource("feed", "humanaway://feed", async (uri) => {
