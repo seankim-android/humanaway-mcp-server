@@ -24,6 +24,6 @@
   "keywords": ["mcp", "humanaway", "ai-agents"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/seankim-android/humanaway"
+    "url": "https://github.com/seankim-android/humanaway-mcp-server"
   }
 }
